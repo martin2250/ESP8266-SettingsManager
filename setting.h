@@ -32,8 +32,8 @@ struct Setting {
 
 	void (*on_change)() = NULL;
 
-	virtual void save(memoryptr savefunc) = 0;
-	virtual void load(memoryptr loadfunc) = 0;
+	virtual void save(memoryptr writefunc) = 0;
+	virtual void load(memoryptr readfunc) = 0;
 	virtual uint8_t parse(const char *input) = 0;
 	virtual String toString(uint8_t which) = 0;
 };
@@ -46,8 +46,8 @@ struct Setting_Int32 : Setting {
 
 	// bool (*checkptr)(Setting_Int32*);
 
-	void save(memoryptr savefunc);
-	void load(memoryptr loadfunc);
+	void save(memoryptr writefunc);
+	void load(memoryptr readfunc);
 	uint8_t parse(const char *input);
 	String toString(uint8_t which);
 };
@@ -60,8 +60,8 @@ struct Setting_Int64 : Setting {
 
 	// bool (*checkptr)(Setting_Int64*);
 
-	void save(memoryptr savefunc);
-	void load(memoryptr loadfunc);
+	void save(memoryptr writefunc);
+	void load(memoryptr readfunc);
 	uint8_t parse(const char *input);
 	String toString(uint8_t which);
 };
@@ -73,8 +73,8 @@ struct Setting_Str : Setting {
 
 	// bool (*checkptr)(Setting_Str*);
 
-	void save(memoryptr savefunc);
-	void load(memoryptr loadfunc);
+	void save(memoryptr writefunc);
+	void load(memoryptr readfunc);
 	uint8_t parse(const char *input);
 	String toString(uint8_t which);
 };

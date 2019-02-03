@@ -9,8 +9,8 @@
 struct SettingsManager {
 	ESP8266WebServer *	server;
 	std::vector<Setting *>	settings;
-	memoryptr		loadfunc = NULL;
-	memoryptr		savefunc = NULL;
+	memoryptr		readfunc = NULL;
+	memoryptr		writefunc = NULL;
 
 	SettingsManager(ESP8266WebServer *server);
 

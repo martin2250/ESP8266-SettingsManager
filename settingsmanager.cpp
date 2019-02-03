@@ -7,7 +7,7 @@ SettingsManager::SettingsManager(ESP8266WebServer *server) : server(server)
 void SettingsManager::load()
 {
 	for (auto it = settings.begin(); it != settings.end(); ++it)
-		(*it)->load(loadfunc);
+		(*it)->load(readfunc);
 }
 
 void SettingsManager::handleSettingsPost()
@@ -57,7 +57,7 @@ void SettingsManager::handleSettingsPost()
 	}
 
 	if (setting->options.save_on_change)
-		setting->save(savefunc);
+		setting->save(writefunc);
 
 	// TODO: SAVE SETTING
 

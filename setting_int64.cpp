@@ -6,21 +6,21 @@ union Convert_Int64 {
 	uint8_t buffer[8];
 };
 
-void Setting_Int64::save(memoryptr savefunc)
+void Setting_Int64::save(memoryptr writefunc)
 {
 	Convert_Int64 conv = { value };
 
-	if (savefunc)
-		savefunc(address, 8, conv.buffer);
+	if (writefunc)
+		writefunc(address, 8, conv.buffer);
 
 	options.changed = 0;
 }
 
-void Setting_Int64::load(memoryptr loadfunc)
+void Setting_Int64::load(memoryptr readfunc)
 {
 	Convert_Int64 conv;
 
-	if ((!loadfunc) || (!loadfunc(address, 8, conv.buffer)) || (conv.intval < min || conv.intval > max)) {
+	if ((!readfunc) || (!readfunc(address, 8, conv.buffer)) || (conv.intval < min || conv.intval > max)) {
 		value = val_default;
 		return;
 	}

@@ -6,21 +6,21 @@ union Convert_Int32 {
 	uint8_t buffer[4];
 };
 
-void Setting_Int32::save(memoryptr savefunc)
+void Setting_Int32::save(memoryptr writefunc)
 {
 	Convert_Int32 conv = { value };
 
-	if (savefunc)
-		savefunc(address, 4, conv.buffer);
+	if (writefunc)
+		writefunc(address, 4, conv.buffer);
 
 	options.changed = 0;
 }
 
-void Setting_Int32::load(memoryptr loadfunc)
+void Setting_Int32::load(memoryptr readfunc)
 {
 	Convert_Int32 conv;
 
-	if ((!loadfunc) || (!loadfunc(address, 4, conv.buffer)) || (conv.intval < min || conv.intval > max)) {
+	if ((!readfunc) || (!readfunc(address, 4, conv.buffer)) || (conv.intval < min || conv.intval > max)) {
 		value = val_default;
 		return;
 	}

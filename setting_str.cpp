@@ -2,16 +2,16 @@
 #include "util.h"
 #include <string.h>
 
-void Setting_Str::save(memoryptr savefunc)
+void Setting_Str::save(memoryptr writefunc)
 {
-	if (savefunc)
-		savefunc(address, strlen((const char *)value) + 1, value);
+	if (writefunc)
+		writefunc(address, strlen((const char *)value) + 1, value);
 	options.changed = 0;
 }
 
-void Setting_Str::load(memoryptr loadfunc)
+void Setting_Str::load(memoryptr readfunc)
 {
-	if ((!loadfunc) || (!loadfunc(address, max_length + 1, value)) || (strlen((const char *)value) > max_length))
+	if ((!readfunc) || (!readfunc(address, max_length + 1, value)) || (strlen((const char *)value) > max_length))
 		strcpy_P((char *)value, val_default);
 }
 
