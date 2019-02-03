@@ -5,13 +5,13 @@
 void Setting_Str::save(memoryptr writefunc)
 {
 	if (writefunc)
-		writefunc(address, strlen(value) + 1, value);
+		writefunc(address, strlen(value) + 1, (uint8_t *)value);
 	options.changed = 0;
 }
 
 void Setting_Str::load(memoryptr readfunc)
 {
-	if ((!readfunc) || (!readfunc(address, max_length + 1, value)) || (strlen(value) > max_length))
+	if ((!readfunc) || (!readfunc(address, max_length + 1, (uint8_t *)value)) || (strlen(value) > max_length))
 		strcpy_P((char *)value, val_default);
 }
 
