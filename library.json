@@ -1,0 +1,16 @@
+{
+  "name": "SettingsManager",
+  "keywords": "eeprom, settings, store, config, wifi, http",
+  "description": "",
+  "repository":
+  {
+    "type": "git",
+    "url": "https://github.com/martin2250/ESP8266-SettingsManager.git"
+  },
+  "version": "1.0.0",
+  "frameworks": "arduino",
+  "dependencies":
+  {
+    "name": "ESP8266WebServer"
+  }
+}
