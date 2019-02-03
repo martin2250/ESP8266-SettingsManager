@@ -67,9 +67,9 @@ struct Setting_Int64 : Setting {
 };
 
 struct Setting_Str : Setting {
-	uint8_t *	value;
-	PGM_P		val_default;
-	uint8_t		max_length; // must be one less than sizeof value
+	char *value;
+	PGM_P val_default;
+	uint8_t max_length; // must be one less than sizeof value
 
 	// bool (*checkptr)(Setting_Str*);
 
