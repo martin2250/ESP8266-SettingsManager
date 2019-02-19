@@ -99,7 +99,7 @@ void SettingsManager::handleSettingsGet(uint8_t groups, String title, String inf
 		"</style>"
 		"</head>"
 		"<body>"
-		"<h1>Settings</h1>"
+		"<h1>" + title + "</h1>"
 		"<table>"
 		"<tr>"
 		"<th>Name</th>"
