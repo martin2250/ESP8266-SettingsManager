@@ -6,7 +6,7 @@
 #include "setting.h"
 #include <vector>
 
-typedef struct
+struct SettingsManager
 {
 	ESP8266WebServer * server;
 	std::vector<Setting *> settings;
@@ -22,6 +22,6 @@ typedef struct
 	void handleSettingsGet(uint8_t groups, String title);
 	void handleSettingsGet(uint8_t groups, String title, String info);
 	void handleSettingsPost();
-} SettingsManager;
+};
 
 #endif
