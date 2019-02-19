@@ -1,7 +1,7 @@
 #include "setting.h"
 #include "util.h"
 
-void Setting_IPAddr::save(memoryptr writefunc)
+void Setting_IPAddress::save(memoryptr writefunc)
 {
 	union {
 		uint32_t	uval;
@@ -14,7 +14,7 @@ void Setting_IPAddr::save(memoryptr writefunc)
 	options.changed = 0;
 }
 
-void Setting_IPAddr::load(memoryptr readfunc)
+void Setting_IPAddress::load(memoryptr readfunc)
 {
 	uint8_t buffer[4];
 
@@ -29,7 +29,7 @@ void Setting_IPAddr::load(memoryptr readfunc)
 		(*on_change)();
 }
 
-uint8_t Setting_IPAddr::parse(const char *input)
+uint8_t Setting_IPAddress::parse(const char *input)
 {
 	IPAddress newval;
 
@@ -45,7 +45,7 @@ uint8_t Setting_IPAddr::parse(const char *input)
 	return 0;
 }
 
-String Setting_IPAddr::toString(uint8_t which)
+String Setting_IPAddress::toString(uint8_t which)
 {
 	switch (which) {
 	case SETTING_TO_STRING_VALUE:

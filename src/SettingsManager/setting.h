@@ -97,7 +97,7 @@ struct Setting_Double : Setting {
 	String toString(uint8_t which);
 };
 
-struct Setting_Str : Setting {
+struct Setting_String : Setting {
 	char *value;
 	PGM_P val_default;
 	uint8_t max_length; // must be one less than sizeof value
@@ -110,7 +110,7 @@ struct Setting_Str : Setting {
 	String toString(uint8_t which);
 };
 
-struct Setting_IPAddr : Setting {
+struct Setting_IPAddress : Setting {
 	IPAddress val_default;
 	IPAddress value;
 
