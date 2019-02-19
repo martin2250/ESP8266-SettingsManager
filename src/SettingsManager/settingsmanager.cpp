@@ -10,6 +10,16 @@ void SettingsManager::load()
 		(*it)->load(readfunc);
 }
 
+void SettingsManager::save()
+{
+	for (auto it = settings.begin(); it != settings.end(); ++it) {
+		Setting *setting = *it;
+
+		if (setting->options.changed)
+			setting->save(writefunc);
+	}
+}
+
 void SettingsManager::handleSettingsPost()
 {
 	String message_buffer;
@@ -73,6 +83,12 @@ void SettingsManager::handleSettingsGet(uint8_t groups)
 {
 	String message_buffer =
 		"<html>"
+		"<head>"
+		"<style>"
+		"table { border-collapse: collapse; }"
+		"table, th, td { border: 1px solid black; }"
+		"</style>"
+		"</head>"
 		"<body>"
 		"<h1>Settings</h1>"
 		"<table>"

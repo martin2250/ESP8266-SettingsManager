@@ -26,6 +26,9 @@ void Setting_Int64::load(memoryptr readfunc)
 	}
 
 	value = conv.intval;
+
+	if (on_change)
+		(*on_change)();
 }
 
 uint8_t Setting_Int64::parse(const char *input)
@@ -40,6 +43,10 @@ uint8_t Setting_Int64::parse(const char *input)
 
 	value = newval;
 	options.changed = 1;
+
+	if (on_change)
+		(*on_change)();
+
 	return 0;
 }
 
@@ -48,7 +55,7 @@ String Setting_Int64::toString(uint8_t which)
 	switch (which) {
 	case SETTING_TO_STRING_VALUE:
 		if (options.hide_value)
-			return String("******");
+			return "******";
 		else
 			return int64_to_string(value);
 	case SETTING_TO_STRING_DEFAULT:

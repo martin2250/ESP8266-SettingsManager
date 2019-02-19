@@ -4,6 +4,7 @@
 #include <Arduino.h>
 #include <stdint.h>
 #include <climits>
+#include <IPAddress.h>
 
 // address, length, buffer
 typedef bool (*memoryptr)(uint16_t, uint8_t, uint8_t *);
@@ -66,12 +67,66 @@ struct Setting_Int64 : Setting {
 	String toString(uint8_t which);
 };
 
+struct Setting_Float : Setting {
+	float value;
+	float val_default;
+	float min = NAN;	// NAN means no limit
+	float max = NAN;
+	uint8_t decimals_show = 5;
+
+	// bool (*checkptr)(Setting_Int64*);
+
+	void save(memoryptr writefunc);
+	void load(memoryptr readfunc);
+	uint8_t parse(const char *input);
+	String toString(uint8_t which);
+};
+
+struct Setting_Double : Setting {
+	double value;
+	double val_default;
+	double min = NAN;	// NAN means no limit
+	double max = NAN;
+	uint8_t decimals_show = 5;
+
+	// bool (*checkptr)(Setting_Int64*);
+
+	void save(memoryptr writefunc);
+	void load(memoryptr readfunc);
+	uint8_t parse(const char *input);
+	String toString(uint8_t which);
+};
+
 struct Setting_Str : Setting {
 	char *value;
 	PGM_P val_default;
 	uint8_t max_length; // must be one less than sizeof value
 
 	// bool (*checkptr)(Setting_Str*);
+
+	void save(memoryptr writefunc);
+	void load(memoryptr readfunc);
+	uint8_t parse(const char *input);
+	String toString(uint8_t which);
+};
+
+struct Setting_IPAddr : Setting {
+	IPAddress val_default;
+	IPAddress value;
+
+	// bool (*checkptr)(Setting_Int32*);
+
+	void save(memoryptr writefunc);
+	void load(memoryptr readfunc);
+	uint8_t parse(const char *input);
+	String toString(uint8_t which);
+};
+
+struct Setting_Bool : Setting {
+	bool val_default;
+	bool value;
+
+	// bool (*checkptr)(Setting_Int32*);
 
 	void save(memoryptr writefunc);
 	void load(memoryptr readfunc);

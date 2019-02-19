@@ -15,8 +15,9 @@ struct SettingsManager {
 	SettingsManager(ESP8266WebServer *server);
 
 	void load();
+	void save();
 
-	void handleSettingsGet(uint8_t groups);
+	void handleSettingsGet(uint8_t groups = 0xFF);
 	void handleSettingsPost();
 };
 
