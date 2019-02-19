@@ -6,19 +6,22 @@
 #include "setting.h"
 #include <vector>
 
-struct SettingsManager {
-	ESP8266WebServer *	server;
-	std::vector<Setting *>	settings;
-	memoryptr		readfunc = NULL;
-	memoryptr		writefunc = NULL;
+typedef struct
+{
+	ESP8266WebServer * server;
+	std::vector<Setting *> settings;
+	memoryptr readfunc = NULL;
+	memoryptr writefunc = NULL;
 
 	SettingsManager(ESP8266WebServer *server);
 
 	void load();
 	void save();
 
-	void handleSettingsGet(uint8_t groups = 0xFF);
+	void handleSettingsGet(uint8_t groups);
+	void handleSettingsGet(uint8_t groups, String title);
+	void handleSettingsGet(uint8_t groups, String title, String info);
 	void handleSettingsPost();
-};
+} SettingsManager;
 
 #endif

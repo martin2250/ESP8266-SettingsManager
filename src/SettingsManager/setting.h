@@ -18,7 +18,7 @@ typedef bool (*memoryptr)(uint16_t, uint8_t, uint8_t *);
 #define SETTING_TO_STRING_MIN 2
 #define SETTING_TO_STRING_MAX 3
 
-struct Setting {
+typedef struct {
 	uint16_t	address;
 	PGM_P		abbrev;
 	PGM_P		name;
@@ -37,7 +37,7 @@ struct Setting {
 	virtual void load(memoryptr readfunc) = 0;
 	virtual uint8_t parse(const char *input) = 0;
 	virtual String toString(uint8_t which) = 0;
-};
+} Setting;
 
 struct Setting_Int32 : Setting {
 	int32_t val_default;

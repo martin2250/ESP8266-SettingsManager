@@ -78,8 +78,17 @@ void SettingsManager::handleSettingsPost()
 
 #define SCRIPT_SET_BACKURL "<script>document.getElementById('backurl_element').value = window.location.href.split('?')[0];</script>"
 
-// todo: add string header
 void SettingsManager::handleSettingsGet(uint8_t groups)
+{
+	handleSettingsGet(groups, PSTR("Settings"));
+}
+
+void SettingsManager::handleSettingsGet(uint8_t groups, String title)
+{
+	handleSettingsGet(groups, title, PSTR(""));
+}
+
+void SettingsManager::handleSettingsGet(uint8_t groups, String title, String info)
 {
 	String message_buffer =
 		"<html>"
@@ -141,6 +150,7 @@ void SettingsManager::handleSettingsGet(uint8_t groups)
 		"<input type=\"submit\" value=\"Save\">"
 		"<input type=\"hidden\" name=\"backurl\" id=\"backurl_element\"/>"
 		"</form>"
+		+ info +
 		"</body>"
 		SCRIPT_SET_BACKURL
 		"</html>";
