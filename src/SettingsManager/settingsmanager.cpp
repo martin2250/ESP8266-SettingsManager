@@ -83,12 +83,12 @@ void SettingsManager::handleSettingsGet(uint8_t groups)
 	handleSettingsGet(groups, PSTR("Settings"));
 }
 
-void SettingsManager::handleSettingsGet(uint8_t groups, String title)
+void SettingsManager::handleSettingsGet(uint8_t groups, PGM_P title)
 {
 	handleSettingsGet(groups, title, PSTR(""));
 }
 
-void SettingsManager::handleSettingsGet(uint8_t groups, String title, String info)
+void SettingsManager::handleSettingsGet(uint8_t groups, PGM_P title, PGM_P info)
 {
 	String message_buffer =
 		"<html>"
@@ -97,9 +97,17 @@ void SettingsManager::handleSettingsGet(uint8_t groups, String title, String inf
 		"table { border-collapse: collapse; }"
 		"table, th, td { border: 1px solid black; }"
 		"</style>"
+		"<title>";
+
+	message_buffer += FPSTR(title);
+	message_buffer +=
+		"</title>"
 		"</head>"
 		"<body>"
-		"<h1>" + title + "</h1>"
+		"<h1>";
+	message_buffer += FPSTR(title);
+	message_buffer +=
+		"</h1>"
 		"<table>"
 		"<tr>"
 		"<th>Name</th>"
@@ -149,8 +157,9 @@ void SettingsManager::handleSettingsGet(uint8_t groups, String title, String inf
 		"<input name=\"value\">"
 		"<input type=\"submit\" value=\"Save\">"
 		"<input type=\"hidden\" name=\"backurl\" id=\"backurl_element\"/>"
-		"</form>"
-		+ info +
+		"</form>";
+	message_buffer += FPSTR(info);
+	message_buffer +=
 		"</body>"
 		SCRIPT_SET_BACKURL
 		"</html>";

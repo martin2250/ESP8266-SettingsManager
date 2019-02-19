@@ -19,8 +19,8 @@ struct SettingsManager
 	void save();
 
 	void handleSettingsGet(uint8_t groups);
-	void handleSettingsGet(uint8_t groups, String title);
-	void handleSettingsGet(uint8_t groups, String title, String info);
+	void handleSettingsGet(uint8_t groups, PGM_P title);
+	void handleSettingsGet(uint8_t groups, PGM_P title, PGM_P info);
 	void handleSettingsPost();
 };
 
