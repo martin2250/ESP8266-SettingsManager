@@ -17,6 +17,7 @@ struct SettingsManager
 
 	void load();
 	void save();
+	void save(Setting *setting);
 
 	void handleSettingsGet(uint8_t groups);
 	void handleSettingsGet(uint8_t groups, PGM_P title);

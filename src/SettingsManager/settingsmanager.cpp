@@ -20,6 +20,11 @@ void SettingsManager::save()
 	}
 }
 
+void SettingsManager::save(Setting *setting)
+{
+	setting->save(writefunc);
+}
+
 void SettingsManager::handleSettingsPost()
 {
 	String message_buffer;
